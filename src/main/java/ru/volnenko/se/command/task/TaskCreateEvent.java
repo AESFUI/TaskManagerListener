@@ -1,8 +1,10 @@
 package ru.volnenko.se.command.task;
 
 import javax.annotation.Resource;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.command.Command;
+import ru.volnenko.se.command.CommandEvent;
 import ru.volnenko.se.controller.Bootstrap;
 import ru.volnenko.se.service.TaskService;
 
@@ -10,7 +12,7 @@ import ru.volnenko.se.service.TaskService;
  * @author Denis Volnenko
  */
 @Component
-public final class TaskCreateCommand extends AbstractCommand {
+public final class TaskCreateEvent implements Command {
 
     @Resource
     private Bootstrap bootstrap;
@@ -28,7 +30,8 @@ public final class TaskCreateCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute() {
+    @EventListener(condition = "#event.command == 'task-create'")
+    public void execute(final CommandEvent event) {
         System.out.println("[TASK CREATE]");
         System.out.println("ENTER NAME:");
         final String name = bootstrap.nextLine();
@@ -36,5 +39,4 @@ public final class TaskCreateCommand extends AbstractCommand {
         System.out.println("[OK]");
         System.out.println();
     }
-
 }

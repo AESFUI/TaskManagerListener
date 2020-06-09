@@ -2,7 +2,6 @@ package ru.volnenko.se.service;
 
 import java.util.Collection;
 import java.util.List;
-import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.repository.IProjectRepository;
@@ -94,5 +93,4 @@ public final class TaskService implements ITaskService {
     public void removeTaskByOrderIndex(Integer orderIndex) {
         taskRepository.removeTaskByOrderIndex(orderIndex);
     }
-
 }

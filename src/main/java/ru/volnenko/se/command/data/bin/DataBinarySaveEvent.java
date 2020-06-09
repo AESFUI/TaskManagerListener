@@ -5,8 +5,10 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import javax.annotation.Resource;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.command.Command;
+import ru.volnenko.se.command.CommandEvent;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Project;
 import ru.volnenko.se.entity.Task;
@@ -17,7 +19,7 @@ import ru.volnenko.se.service.TaskService;
  * @author Denis Volnenko
  */
 @Component
-public final class DataBinarySaveCommand extends AbstractCommand {
+public final class DataBinarySaveEvent implements Command {
 
     @Resource
     private ProjectService projectService;
@@ -35,7 +37,8 @@ public final class DataBinarySaveCommand extends AbstractCommand {
     }
 
     @Override
-    public void execute() throws Exception {
+    @EventListener(condition = "#event.command == 'data-bin-save'")
+    public void execute(final CommandEvent event) throws Exception {
         System.out.println("[DATA BINARY SAVE]");
         final Project[] projects = projectService.getListProject().toArray(new Project[] {});
         final Task[] tasks = taskService.getListTask().toArray(new Task[] {});
@@ -54,5 +57,4 @@ public final class DataBinarySaveCommand extends AbstractCommand {
         System.out.println("[OK]");
         System.out.println();
     }
-
 }

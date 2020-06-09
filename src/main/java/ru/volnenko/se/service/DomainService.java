@@ -29,5 +29,4 @@ public final class DomainService implements IDomainService {
         domain.setProjects(projectService.getListProject());
         domain.setTasks(taskService.getListTask());
     }
-
 }

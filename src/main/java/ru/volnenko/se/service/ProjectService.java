@@ -3,16 +3,16 @@ package ru.volnenko.se.service;
 import java.util.Collection;
 import java.util.List;
 import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.repository.IProjectRepository;
+import ru.volnenko.se.api.service.IProjectService;
 import ru.volnenko.se.entity.Project;
 
 /**
  * @author Denis Volnenko
  */
 @Service
-public final class ProjectService implements ru.volnenko.se.api.service.IProjectService {
+public final class ProjectService implements IProjectService {
 
     @Resource
     private final IProjectRepository projectRepository;
@@ -72,5 +72,4 @@ public final class ProjectService implements ru.volnenko.se.api.service.IProject
         if (orderIndex == null) return null;
         return projectRepository.removeByOrderIndex(orderIndex);
     }
-
 }
