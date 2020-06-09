@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.volnenko.se</groupId>
-    <artifactId>taskmanager</artifactId>
+    <artifactId>taskmanagerlistener</artifactId>
     <version>1.0.0</version>
 
     <name>Task Manager</name>
@@ -77,7 +77,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/taskmanager/lib</outputDirectory>
+                            <outputDirectory>${project.build.directory}/taskmanagerlistener/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -102,12 +102,12 @@
                     <artifactItems>
                         <artifactItem>
                             <groupId>ru.volnenko.se</groupId>
-                            <artifactId>taskmanager</artifactId>
+                            <artifactId>taskmanagerlistener</artifactId>
                             <version>1.0.0</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
-                            <outputDirectory>${project.build.directory}/taskmanager/bin</outputDirectory>
-                            <destFileName>taskmanager.jar</destFileName>
+                            <outputDirectory>${project.build.directory}/taskmanagerlistener/bin</outputDirectory>
+                            <destFileName>taskmanagerlistener.jar</destFileName>
                         </artifactItem>
                     </artifactItems>
                     <overWriteReleases>false</overWriteReleases>

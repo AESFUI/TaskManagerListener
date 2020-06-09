@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.config.ContextConfiguration;
 import ru.volnenko.se.controller.Bootstrap;
 
 public class App {
