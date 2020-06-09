@@ -2,6 +2,7 @@ package ru.volnenko.se.command.project;
 
 import javax.annotation.Resource;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -12,7 +13,7 @@ import ru.volnenko.se.service.ProjectService;
  * @author Denis Volnenko
  */
 @Component
-public final class ProjectListEvent implements Command {
+public class ProjectListEvent implements Command {
 
     @Resource
     private ProjectService projectService;
@@ -28,6 +29,7 @@ public final class ProjectListEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'project-list'")
     public void execute(final CommandEvent event) {
         System.out.println("[PROJECT LIST]");

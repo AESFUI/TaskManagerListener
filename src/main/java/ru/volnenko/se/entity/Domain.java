@@ -1,7 +1,6 @@
 package ru.volnenko.se.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;

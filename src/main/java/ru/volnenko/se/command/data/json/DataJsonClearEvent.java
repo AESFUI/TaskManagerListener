@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import javax.annotation.Resource;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -14,7 +15,7 @@ import ru.volnenko.se.constant.DataConstant;
  * @author Denis Volnenko
  */
 @Component
-public final class DataJsonClearEvent implements Command {
+public class DataJsonClearEvent implements Command {
 
     @Resource
     private ApplicationEventPublisher applicationEventPublisher;
@@ -30,6 +31,7 @@ public final class DataJsonClearEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'data-json-clear'")
     public void execute(final CommandEvent event) throws Exception {
         final File file = new File(DataConstant.FILE_JSON);

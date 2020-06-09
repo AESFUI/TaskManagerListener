@@ -2,6 +2,7 @@ package ru.volnenko.se.command.task;
 
 import javax.annotation.Resource;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -12,7 +13,7 @@ import ru.volnenko.se.service.TaskService;
  * @author Denis Volnenko
  */
 @Component
-public final class TaskListEvent implements Command {
+public class TaskListEvent implements Command {
 
     @Resource
     private TaskService taskService;
@@ -28,6 +29,7 @@ public final class TaskListEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'task-list'")
     public void execute(final CommandEvent event) {
         System.out.println("[TASK LIST]");

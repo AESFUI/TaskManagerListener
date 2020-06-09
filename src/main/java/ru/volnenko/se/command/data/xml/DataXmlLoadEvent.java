@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Files;
 import javax.annotation.Resource;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -17,7 +18,7 @@ import ru.volnenko.se.service.DomainService;
  * @author Denis Volnenko
  */
 @Component
-public final class DataXmlLoadEvent implements Command {
+public class DataXmlLoadEvent implements Command {
 
     @Resource
     private DomainService domainService;
@@ -33,6 +34,7 @@ public final class DataXmlLoadEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'data-xml-load'")
     public void execute(final CommandEvent event) throws Exception {
         System.out.println("[LOAD XML DATA]");

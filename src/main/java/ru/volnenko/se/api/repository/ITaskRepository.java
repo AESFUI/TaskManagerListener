@@ -1,9 +1,8 @@
 package ru.volnenko.se.api.repository;
 
-import ru.volnenko.se.entity.Task;
-
 import java.util.Collection;
 import java.util.List;
+import ru.volnenko.se.entity.Task;
 
 /**
  * @author Denis Volnenko

@@ -1,7 +1,6 @@
 package ru.volnenko.se.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;

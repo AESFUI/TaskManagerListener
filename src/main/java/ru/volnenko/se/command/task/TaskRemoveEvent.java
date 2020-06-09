@@ -2,6 +2,7 @@ package ru.volnenko.se.command.task;
 
 import javax.annotation.Resource;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -11,7 +12,7 @@ import ru.volnenko.se.controller.Bootstrap;
  * @author Denis Volnenko
  */
 @Component
-public final class TaskRemoveEvent implements Command {
+public class TaskRemoveEvent implements Command {
 
     @Resource
     private Bootstrap bootstrap;
@@ -27,6 +28,7 @@ public final class TaskRemoveEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'task-remove'")
     public void execute(final CommandEvent event) {
         System.out.println("[REMOVING TASK]");

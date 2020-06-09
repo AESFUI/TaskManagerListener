@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import javax.annotation.Resource;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -17,7 +18,7 @@ import ru.volnenko.se.service.DomainService;
  * @author Denis Volnenko
  */
 @Component
-public final class DataJsonLoadEvent implements Command {
+public class DataJsonLoadEvent implements Command {
 
     @Resource
     private ApplicationEventPublisher applicationEventPublisher;
@@ -35,6 +36,7 @@ public final class DataJsonLoadEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'data-json-load'")
     public void execute(final CommandEvent event) throws Exception {
         System.out.println("[LOAD JSON DATA]");

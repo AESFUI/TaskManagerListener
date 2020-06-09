@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import javax.annotation.Resource;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.Command;
 import ru.volnenko.se.command.CommandEvent;
@@ -17,7 +18,7 @@ import ru.volnenko.se.service.TaskService;
  * @author Denis Volnenko
  */
 @Component
-public final class DataBinaryLoadEvent implements Command {
+public class DataBinaryLoadEvent implements Command {
 
     @Resource
     private ProjectService projectService;
@@ -35,6 +36,7 @@ public final class DataBinaryLoadEvent implements Command {
     }
 
     @Override
+    @Async("CustomAsyncExecutor")
     @EventListener(condition = "#event.command == 'data-bin-load'")
     public void execute(final CommandEvent event) throws Exception {
         System.out.println("[DATA BINARY LOAD]");
